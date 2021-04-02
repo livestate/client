@@ -41,4 +41,4 @@ const CounterExample = () => {
 
 ## License
 
-[webdeb](https://github.com/webdeb)
+MIT © [webdeb](https://github.com/webdeb)
