@@ -17,17 +17,21 @@ const App = () => {
 
 const counterConfig = {
   id: uuid('counter'),
-  defaultValue: 0
+  defaultValue: { counter: 0 }
 }
 
 const CounterButton = () => {
   const [state, setCounter] = useLiveState(counterConfig)
-  return <button onClick={() => setCounter(state + 1)}>Inc {state}</button>
+  return (
+    <button onClick={() => setCounter({ counter: state.counter + 1 })}>
+      Inc {state.counter}
+    </button>
+  )
 }
 
 const Counter = () => {
   const [state] = useLiveState(counterConfig)
-  return <p>{state}</p>
+  return <p>{state.counter}</p>
 }
 
 const chatConfig = {

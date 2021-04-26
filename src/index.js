@@ -48,6 +48,7 @@ export const LiveStateProvider = ({ children, uri }) => {
 }
 
 export const useLiveState = ({ id, defaultValue }) => {
+  if (!id) throw new Error('useLiveState requires an `id` and a `defaultValue`')
   const { socket, channels = {}, channelsState = {}, set } = useContext(
     LiveStateContext
   )
@@ -81,6 +82,8 @@ export const useLiveState = ({ id, defaultValue }) => {
   }
 
   useEffect(() => {
+    if (!id) return
+
     if (state === undefined) {
       setState(defaultValue)
     }
@@ -110,7 +113,7 @@ export const useLiveState = ({ id, defaultValue }) => {
 
       setChannels((channels) => ({ ...channels, [id]: channel }))
     }
-  }, [state, channel, socket])
+  }, [state, channel, socket, id])
 
   return [state || defaultValue, setState]
 }
