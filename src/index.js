@@ -69,7 +69,7 @@ export const useLiveState = ({ id, defaultValue }) => {
       const newState =
         typeof newStateOrFunction === 'function'
           ? newStateOrFunction(channelsState[id])
-          : newStateOrFunction
+          : { ...channelsState[id], ...newStateOrFunction }
 
       const patch = jsonpatch.compare(channelsState[id] || {}, newState)
       if (channel) {
